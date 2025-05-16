@@ -1,0 +1,82 @@
+
+.topnav {
+    background-color: #34495e;
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+}
+
+.topnav a {
+    float: left;
+    color: #ecf0f1;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.topnav a:hover {
+    color: #3498db;
+}
+
+.topnav a.active {
+    background-color: #4a617a;
+    color: white;
+}
+
+.job-listings {
+    display: flex;
+    margin: 20px;
+}
+
+.job-titles {
+    width: 40%;
+    background-color: white;
+    margin-right: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.job-details {
+    width: 60%;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.job-item {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+}
+
+.job-item:hover {
+    background-color: #f9f9f9;
+}
+
+.job-item.selected {
+    background-color: #e0e0e0;
+}
+
+.job-title {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.job-company {
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.job-meta {
+    color: #888;
+    font-size: 14px;
+}
+
+.apply-btn {
+    background-color: #34495e;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
+}
