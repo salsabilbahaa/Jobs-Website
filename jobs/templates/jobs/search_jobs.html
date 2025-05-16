@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Available Jobs</h1>
+<ul>
+    {% for job in jobs %}
+        <li>
+            <strong>{{ job.title }}</strong> at {{ job.company }} - ${{ job.salary }}
+            {% if job.status == 'open' %}
+                <form action="{% url 'apply_to_job' job.id %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit">Apply</button>
+                </form>
+            {% else %}
+                <span>Applications Closed</span>
+            {% endif %}
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}
