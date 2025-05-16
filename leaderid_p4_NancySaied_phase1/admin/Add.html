@@ -1,0 +1,47 @@
+<html>
+    <head>
+        <title>Add Job</title>
+        <link rel="stylesheet"  href="Add.css">
+    </head>
+    <body>
+        <div class ="topnav">
+            <a  href="../Home/home2.html">Home</a>
+            <a class="active" href="./Add.html">Add job</a>
+            <a  href="../admin/Edit.html">Edit Job</a>
+            <a href="page4.html">Company Jobs</a>
+            <a id="login-register-link" href="../Login.html">Login / Register</a>
+            <a id="logout-link" href="#" style="display: none ">Logout</a>
+           </div>
+    <br>
+    <br>
+        <form class="form">
+            <div>
+                <h1>Add Job</h1>
+            </div>
+            <div>
+                <input id="id" type="number" placeholder="Enter Job ID" required>
+            </div>
+            <div>
+                <input id="tit" type="text" placeholder="Enter Job Title" required>
+            </div>
+            <div>
+                <input id="num" type="number" placeholder="Enter Salary" required>
+            </div>
+            <div>
+                <input id="name" type="text" placeholder="Enter Company Name" required>
+            </div>
+            <div>
+                <select name="Status" id="stat" required>
+                    <option value="" disabled selected>Select Status</option>
+                    <option value="open">Opened</option>
+                    <option value="closed">Closed</option>
+                </select>
+            </div>
+            <div>
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+        <script src="script4.js"></script>
+        <script  src="../Logout.js"></script>
+    </body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <style>
+        body 
+        {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.8;
+            min-height: 100vh;
+            background: white;
+            flex-direction: column;
+            margin: 0;
+        }
+        .registerForm 
+        {
+            background-color: silver;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            padding: 10px 20px;
+            width: 500px;
+            text-align: center;
+        }
+        h1 
+        {
+            color:#34495e;
+        }
+        label 
+        {
+            display: block;
+            width: 100%;
+            margin-top: 10px;
+            margin-bottom: 5px;
+            text-align: left;
+            color:black;
+            font-weight: bold;
+        }
+        input 
+        {
+            display: block;
+            width: 100%;
+            margin-bottom: 15px;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid white;
+            border-radius: 5px;
+        }
+        button 
+        {
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            border: none;
+            color: white;
+            cursor: pointer;
+            background-color:#34495e;
+            width: 100%;
+            font-size: 16px;
+        }
+        select 
+        {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        a{
+                color: #3498db;
+        }
+    </style>
+</head>
+
+<body>
+    
+    <div class="register">
+        <form class="registerForm">
+            <h1>Register</h1>
+            <div>
+                <label for="email">Email:</label>
+                <input type="email", id="email", placeholder="Enter your email" required>    
+            </div>
+
+            <div>
+                <label for="username">Username:</label>
+                <input type="text", id="username", placeholder="Enter username" required>    
+            </div>
+        
+            <div>
+                <label for="password">Password:</label>
+                <input type="password", id="password", placeholder="Enter your password" required>
+            </div>
+
+            <div>
+                <label for="role">Role:</label>
+                    <select id="role" name="role" required>
+                        <option value="user">User</option>
+                        <option value="admin">Admin</option>
+                    </select>
+            </div>
+            <a href="Login.html" >Already have an account?</a>
+
+            <button type="submit"> Register </button>
+           
+        </form>
+    </div>
+    <script src="Register.js"></script>
+</body>
+</html>

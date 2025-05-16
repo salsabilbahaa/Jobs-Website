@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="UTF-8"> 
+        <title>Job Details</title>
+        <style>
+            body 
+            {
+                font-family: Arial;
+                background: white;
+                margin: 0;
+            }
+            .topnav {
+                background-color: #34495e;
+                display: flex;
+                justify-content: center;
+                padding: 10px 0;
+            }
+
+            .topnav a {
+                float: left;
+                color: #f2f2f2;
+                padding: 14px 16px;
+                text-decoration: none;
+                font-size: 17px;
+            }
+
+            .topnav a:hover {
+                color: #3498db;
+            }
+
+            .topnav a.active {
+                background-color: #4a617a;
+                color: white;
+            }
+            .job
+            {
+                background-color: white;
+                border-radius: 20px;
+                box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+                padding: 10px 20px;
+                text-align: left;
+                margin: 50px auto;
+            } 
+            .back-btn{
+                display: inline-block;
+                padding: 10px 20px;
+                background-color: #34495e;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                border: none;
+                cursor: pointer;
+                font-size: 15px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class ="topnav">
+            <a class="active" href="../Home/home.html">Home</a>
+            <a  href="../search/search_job.html">Search jobs</a>
+            <a href="../user/application.html">My applications</a>
+            <a href="#">Logout</a>
+        </div>
+        <div class="job">
+            <p><strong style="font-size:18px"><span style="color: #34495e">Company Name:</span></strong> Employ Me </p>
+            <p><strong style="font-size:18px"><span style="color: #34495e">Job Title:</span></strong> Data Scientist </p>
+            <p><strong style="font-size:18px"><span style="color: #34495e">Job ID:</span></strong> 24680 </p>
+            <p><strong style="font-size:18px"><span style="color: #34495e">Job Status:</span></strong> Open </p>
+            <p><strong style="font-size:18px"><span style="color: #34495e">Salary:</span></strong> Not specified </p>
+            <a href="../admin/page4.html" class="back-btn">Back to Jobs</a>
+        </div>
+    </body>
+
+</html> 
