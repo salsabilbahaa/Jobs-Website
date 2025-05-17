@@ -6,7 +6,7 @@ class Job(models.Model):
         ('close', 'Closed'),
     ]
     title = models.CharField(max_length=100)
-    salary = models.IntegerField(max_digits=10)
+    salary = models.IntegerField()
     company = models.CharField(max_length=100)
     status = models.CharField(max_length=10, choices=STATUS_CHOICES)
 
