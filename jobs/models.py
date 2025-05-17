@@ -5,6 +5,7 @@ class Job(models.Model):
         ('open', 'Open'),
         ('close', 'Closed'),
     ]
+    job_id = models.CharField(max_length=50, unique=True,default='default123') 
     title = models.CharField(max_length=100)
     salary = models.IntegerField()
     company = models.CharField(max_length=100)
@@ -19,3 +20,4 @@ class Application(models.Model):
 
     def __str__(self):
         return f"{self.job.title} - {self.date_applied}"
+

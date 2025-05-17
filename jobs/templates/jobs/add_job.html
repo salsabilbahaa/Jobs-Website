@@ -1,0 +1,42 @@
+<html>
+    <head>
+        <title>Add Job</title>
+        
+    </head>
+    <body>
+
+        <form class="form" method="POST">
+            {% csrf_token %}
+           
+            <div>
+                <h1>Add Job</h1>
+            </div>
+            <div>
+                <input name="job_id" type="number" placeholder="Enter Job ID" required >
+                
+            </div>
+            <div>
+                <input name="title"  type="text" placeholder="Enter Job Title" required >
+            </div>
+            <div>
+                <input name="salary"  type="number" placeholder="Enter Salary" required >
+            </div>
+            <div>
+                <input name="company_name" type="text" placeholder="Enter Company Name" required >
+            </div>
+            <div>
+                <select required name="status">
+                    <option value="" disabled selected>Select Status</option>
+                    <option value="opened">Opened</option>
+                    <option value="closed">Closed</option>
+                </select>
+            </div>
+            <div>
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+
+       
+    
+    </body>
+</html>
