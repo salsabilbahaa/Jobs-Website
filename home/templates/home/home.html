@@ -1,0 +1,109 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home - Job Search</title>
+    <link rel="stylesheet" href="{% static 'home/css/home.css' %}">
+</head>
+<body>
+    <div class="topnav">
+        <a class="active" href="{% url 'home' %}">Home</a>
+        <a href="{% url 'search_job' %}">Search jobs</a>
+        <a href="{% url 'my_applications' %}">My applications</a>
+        {% if user.is_authenticated %}
+            <a id="logout-link" href="{% url 'logout' %}">Logout</a>
+        {% else %}
+            <a id="login-register-link" href="{% url 'login' %}">Login / Register</a>
+        {% endif %}
+    </div>
+    <div class="hero">
+        <div class="hero-content">
+            <h1>Find Your Dream Job</h1>
+            <p>Connect with top employers and discover opportunities that match your skills</p>
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="Search for jobs..." class="search-input">
+                <select id="experience-select" class="experience-select">
+                    <option value="">Any Experience</option>
+                    <option value="0-1">0-1 years</option>
+                    <option value="1-3">1-3 years</option>
+                    <option value="3-5">3-5 years</option>
+                    <option value="5+">5+ years</option>
+                </select>
+                <button class="search-button" id="search-button">Search</button>
+            </div>
+        </div>
+    </div>
+    <div class="featured-jobs">
+        <h2>Featured Job Opportunities</h2>
+        <div class="job-cards" id="job-cards-container">
+            {% if featured_jobs %}
+                {% for job in featured_jobs %}
+                <div class="job-card">
+                    <h3>{{ job.title }}</h3>
+                    <div class="company-name">{{ job.company }}</div>
+                    <div class="job-details">Experience: {{ job.experience|default:"Not specified" }}</div>
+                    <div class="job-details">Salary: {{ job.salary|default:"Not specified" }}</div>
+                    <div class="job-location">Job ID: {{ job.id }}</div>
+                    <a href="{% url 'job_detail' job.id %}" class="view-job-btn">View Details</a>
+                </div>
+                {% endfor %}
+            {% else %}
+                <p class="no-jobs">No open jobs available at the moment.</p>
+            {% endif %}
+        </div>
+    </div>
+    <div class="categories-section">
+        <h2>Browse By Category</h2>
+        <div class="categories">
+            <div class="category">
+                <div class="category-icon">💻</div>
+                <h3>Technology</h3>
+                <p>Software, Data, IT</p>
+            </div>
+            <div class="category">
+                <div class="category-icon">📊</div>
+                <h3>Business</h3>
+                <p>Marketing, Sales, Finance</p>
+            </div>
+            <div class="category">
+                <div class="category-icon">🔬</div>
+                <h3>Engineering</h3>
+                <p>Mechanical, Electrical, Civil</p>
+            </div>
+            <div class="category">
+                <div class="category-icon">🎨</div>
+                <h3>Design</h3>
+                <p>UX/UI, Graphic, Product</p>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Job Search</h3>
+                <p>Find your dream job with our platform. We connect talented professionals with top employers.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'search_job' %}">Search Jobs</a></li>
+                    <li><a href="{% url 'my_applications' %}">My Applications</a></li>
+                    <li><a href="{% url 'login' %}">Login</a></li>
+                    <li><a href="{% url 'register' %}">Register</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Email: info@jobsearch.com</p>
+                <p>Phone: (123) 456-7890</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Job Search Website. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="{% static 'home/js/home.js' %}"></script>
+</body>
+</html>

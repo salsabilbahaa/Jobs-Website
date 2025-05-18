@@ -26,3 +26,5 @@ def add_job(request):
         x=Job.objects.create(title=title, salary=salary, company=company, status=status, job_id=job_id)
         x.save()
     return render(request, 'jobs/add_job.html')
+
+
