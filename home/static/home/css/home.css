@@ -31,7 +31,7 @@ body {
 }
 
 .hero {
-    background-image: url(../photo2.jpeg);
+    background-image: url('../img/photo2.jpeg');
     height:750px;
     background-size:cover;
     color: white;
