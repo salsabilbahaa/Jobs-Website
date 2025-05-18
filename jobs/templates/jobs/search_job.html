@@ -1,10 +1,12 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    {% load static %}
     <title>Search jobs</title>
-    <link rel="stylesheet" href="search.job.style.css">
+    <link rel="stylesheet" href="{% static 'search.job.style.css' %}">
 </head>    
 <body>
+    {% block content %}
     <div class="topnav">
         <a href="../Home/home.html">Home</a>
         <a class="active" href="search_job.html">Search jobs</a>
@@ -20,7 +22,6 @@
             <p>Select a job to view details</p>
         </div>
     </div>
-    <script src="search.job.js"></script>
-    <script  src="../Logout.js"></script>
+    {% endblock %}
 </body>   
 </html>

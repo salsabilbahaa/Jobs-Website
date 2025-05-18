@@ -3,7 +3,7 @@ from .models import Job, Application
 
 def search_jobs(request):
     jobs = Job.objects.all()
-    return render(request, 'jobs/search_jobs.html', {'jobs': jobs})
+    return render(request, 'jobs/search_job.html', {'jobs': jobs})
 
 def apply_to_job(request, job_id):
     job = Job.objects.get(pk=job_id)

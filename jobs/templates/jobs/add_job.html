@@ -1,33 +1,41 @@
 <html>
     <head>
+        {% load static %}
         <title>Add Job</title>
-        
+        <link rel="stylesheet"  href="{% static 'Add.css' %}">
     </head>
     <body>
-
-        <form class="form" method="POST">
-            {% csrf_token %}
-           
+        {% block content %}
+        <div class ="topnav">
+            <a  href="../Home/home2.html">Home</a>
+            <a class="active" href="./Add.html">Add job</a>
+            <a  href="../admin/Edit.html">Edit Job</a>
+            <a href="page4.html">Company Jobs</a>
+            <a id="login-register-link" href="../Login.html">Login / Register</a>
+            <a id="logout-link" href="#" style="display: none ">Logout</a>
+           </div>
+    <br>
+    <br>
+        <form class="form">
             <div>
                 <h1>Add Job</h1>
             </div>
             <div>
-                <input name="job_id" type="number" placeholder="Enter Job ID" required >
-                
+                <input id="id" type="number" placeholder="Enter Job ID" required>
             </div>
             <div>
-                <input name="title"  type="text" placeholder="Enter Job Title" required >
+                <input id="tit" type="text" placeholder="Enter Job Title" required>
             </div>
             <div>
-                <input name="salary"  type="number" placeholder="Enter Salary" required >
+                <input id="num" type="number" placeholder="Enter Salary" required>
             </div>
             <div>
-                <input name="company_name" type="text" placeholder="Enter Company Name" required >
+                <input id="name" type="text" placeholder="Enter Company Name" required>
             </div>
             <div>
-                <select required name="status">
+                <select name="Status" id="stat" required>
                     <option value="" disabled selected>Select Status</option>
-                    <option value="opened">Opened</option>
+                    <option value="open">Opened</option>
                     <option value="closed">Closed</option>
                 </select>
             </div>
@@ -35,8 +43,6 @@
                 <button type="submit">Submit</button>
             </div>
         </form>
-
-       
-    
+        {% endblock %}
     </body>
 </html>

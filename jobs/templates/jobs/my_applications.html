@@ -1,12 +1,25 @@
-{% block content %}
-<h1>My Applications</h1>
-<ul>
-    {% for application in applications %}
-        <li>
-            {{ application.job.title }} at {{ application.job.company }} — Applied on {{ application.applied_at|date:"F j, Y, g:i a" }}
-        </li>
-    {% empty %}
-        <li>You haven't applied to any jobs yet.</li>
-    {% endfor %}
-</ul>
-{% endblock %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    {% load static %}
+    <title>My Applications</title>
+    <link rel="stylesheet" href="{% static 'application.css' %}">
+</head>
+<body>
+    {% block content %}
+    <div class="user">
+        <h2>Application Panel</h2>
+        <a href="../Home/home.html">Home</a>
+        <a href="../search/search_job.html">Search jobs</a>
+        <a class="active" href="application.html">My applications</a>
+        <a id="login-register-link" href="../Login.html">Login / Register</a>
+        <a id="logout-link" href="#" style="display: none ">Logout</a>
+    </div>
+    <div class="main-content">
+        <h1> Your Applied Jobs</h1>
+        <div id="applicationsContainer"></div>
+    </div>
+    {% endblock %}
+</body>
+</html>
