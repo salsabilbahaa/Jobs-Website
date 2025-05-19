@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Job</title>
+    <link rel="stylesheet" href="{% static 'css/edit.css' %}">
+</head>
+<body>
+    <form class="form" method="POST">
+        {% csrf_token %}
+        <div>
+            <h1>Edit Job</h1>
+        </div>
+        <div>
+            <input type="number" name="job_id" placeholder="Enter Job ID" value="{{ job.id }}" required>
+        </div>
+        <div>
+            <input type="text" name="title" placeholder="Enter Job Title" value="{{ job.title }}" required>
+        </div>
+        <div>
+            <input type="number" name="salary" placeholder="Enter Salary" value="{{ job.salary }}" required>
+        </div>
+        <div>
+            <input type="text" name="company_name" placeholder="Enter Company Name" value="{{ job.company }}" required>
+        </div>
+        <div>
+            <select name="status" required>
+                <option value="" disabled>Select Status</option>
+                <option value="open" {% if job.status == 'open' %}selected{% endif %}>Open</option>
+                <option value="close" {% if job.status == 'close' %}selected{% endif %}>Closed</option>
+            </select>
+        </div>
+        <div>
+            <button type="submit">Update Job</button>
+        </div>
+    </form>
+
+</body>
+</html>
