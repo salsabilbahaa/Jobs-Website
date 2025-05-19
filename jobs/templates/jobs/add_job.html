@@ -16,24 +16,25 @@
            </div>
     <br>
     <br>
-        <form class="form">
+        <form class="form" method="post" >
+            {% csrf_token %}
             <div>
                 <h1>Add Job</h1>
             </div>
             <div>
-                <input id="id" type="number" placeholder="Enter Job ID" required>
+                <input id="id" type="number" placeholder="Enter Job ID" required name="job_id">
             </div>
             <div>
-                <input id="tit" type="text" placeholder="Enter Job Title" required>
+                <input id="tit" type="text" placeholder="Enter Job Title" required name="title">
             </div>
             <div>
-                <input id="num" type="number" placeholder="Enter Salary" required>
+                <input id="num" type="number" placeholder="Enter Salary" required name="salary">
             </div>
             <div>
-                <input id="name" type="text" placeholder="Enter Company Name" required>
+                <input id="name" type="text" placeholder="Enter Company Name" required name="company_name">
             </div>
             <div>
-                <select name="Status" id="stat" required>
+                <select name="status" id="stat" required>
                     <option value="" disabled selected>Select Status</option>
                     <option value="open">Opened</option>
                     <option value="closed">Closed</option>
