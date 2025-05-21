@@ -63,7 +63,7 @@ form.addEventListener('submit', function(event) {
     {
         errors.push('Please enter your confirm password');
     }
-    else if (confirmPassword !== password) 
+    else if (confirmPassword != password) 
     {
         errors.push('Passwords do not match');
     }
