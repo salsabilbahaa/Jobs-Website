@@ -67,40 +67,33 @@ loginForm.addEventListener('submit', function (e)
             errors.push('Password must contain at least one number');
         }
     }
-
-    // if errors exist, show them
     if (errors.length > 0) 
     {
         alert(errors.join('\n'));
         return;
     }
-
     fetch('/accounts/login/', {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            username: username,
-            password: password,
-            role: role
-        })
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+        username: username,
+        password: password,
+        role: role
+    })
     })
     .then(response => response.json())
     .then(data => {
         if (data.status === "success") {
             alert(data.message);
-            if (role === "user") {
-                window.location.href = "/accounts/home/";
+            if (data.role === "user") {
+                window.location.href = "/";
             } else {
                 window.location.href = "/accounts/admin/";
             }
         } else {
-            alert(data.message); // Invalid credentials
+            alert(data.message); 
         }
-    })
-    .catch(error => {
-        console.error("Error:", error);
-        alert("An error occurred.");
-    });
+   })
 });

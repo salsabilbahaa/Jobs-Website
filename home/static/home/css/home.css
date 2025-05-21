@@ -12,20 +12,17 @@ body {
     justify-content: center;
     padding: 10px 0;
 }
-
-.topnav a {
+.topnav #ac{
     float: left;
-    color: #f2f2f2;
+    text-decoration: #f2f2f2;
     padding: 14px 16px;
     text-decoration: none;
     font-size: 17px;
 }
-
-.topnav a:hover {
+.topnav #ac:hover {
     color: #3498db;
 }
-/* #7aa0c6; */
-.topnav a.active {
+.topnav #ac.active {
     background-color: #4a617a;
     color: white;
 }
@@ -287,4 +284,19 @@ footer {
     .search-button {
         border-radius: 5px;
     }
+}
+.logout-link , #ac , #login-register-link{
+    color: #f2f2f2;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.logout-link:hover , #ac:hover , #login-register-link:hover{
+    color: #3498db;
+}
+
+.logout-link.active , #ac.active , #login-register-link.active{
+    background-color: #4a617a;
+    color: white;
 }

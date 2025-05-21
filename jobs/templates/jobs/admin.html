@@ -1,0 +1,87 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="csrf-token" content="{{ csrf_token }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <link rel="stylesheet" href="{% static 'page4.css' %}">
+</head>
+<body>
+    <div class="admin">
+        <div class="navbar">
+            <h2>Admin Panel</h2>
+            <nav>
+                <ul>
+                    <li><a href="{% url 'home2' %}">Home</a></li>
+                    <li class="active"><a href="{% url 'job_list' %}">Company Jobs</a></li>
+                    {% if user.is_authenticated %}
+                        <li><a href="{% url 'logout' %}" id="logout-link">Logout</a></li>
+                    {% else %}
+                        <li><a href="{% url 'login' %}" id="login-register-link">Login / Register</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+        <main class="content">
+            <header>
+                <h1>Company Jobs</h1>
+                <a href="{% url 'add_job' %}" class="bt">Create New Job</a>
+            </header>
+            <div class="filters">
+              <form method="GET" action="{% url 'job_list' %}">
+                    <input type="text" id="searchInput" name="search" placeholder="Search jobs..." value="{{ search }}">
+                    <button type="submit" class="bt">Filter</button>
+             </form>
+            </div>
+            
+            <div class="list" id="jobs">
+                
+                {% for job in jobs %}
+                <div class="job-item" id="job-{{ job.id }}">
+                    <div class="job-header">
+                        <h3>{{ job.title}}</h3>
+                        <span class="status {{ job.status }}">{{ job.get_status_display }}</span>
+                    </div>
+                    <div class="job-details">
+                        <p><strong>Job ID:</strong> {{ job.id }}</p>
+                        <p><strong>Salary:</strong> {{ job.salary }}</p>
+                        <p><strong>Company:</strong> {{ job.company }}</p>
+                    </div>
+                    <div class="job-actions">
+                        <a href="{% url 'edit_job' job.id %}" class="bt btn-small edit">Edit</a>
+                        <a href="#" onclick= "deleteJob('{{ job.id }}')" class="bt btn-small delete">Delete</a>
+                    </div>
+                </div>
+                {% empty %}
+                <p>No jobs found</p>
+                {% endfor %}
+            </div>
+        </main>
+    </div>
+    <script>
+        function deleteJob(jobId) {
+            if (!confirm("Are you sure you want to delete this job?")) return;
+            const csrftoken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+            fetch(`http://127.0.0.1:8000/jobs/admin-jobs/delete-job/${jobId}/`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrftoken,
+                }
+            })
+            .then(response => {
+                if (!response.ok) throw new Error("failed");
+                window.location.reload();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Something went wrong');
+            });
+        }
+
+   </script>
+
+</body>
+</html>
