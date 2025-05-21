@@ -80,6 +80,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'webProject.wsgi.application'
 
+LOGOUT_REDIRECT_URL = 'logout'
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases

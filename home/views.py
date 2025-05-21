@@ -2,7 +2,8 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from jobs.models import Job  # Import the Job model from jobs app
 from django.db.models import Q
-import re
+from django.contrib.auth import logout as auth_logout
+from django.shortcuts import redirect
 def home(request):
 
     # Get open jobs for the featured section (limit to 3)
@@ -84,3 +85,11 @@ def search_jobs_ajax(request):
         })
 
     return JsonResponse({'jobs': jobs_data})
+
+def logout(request):
+   auth_logout(request)
+   return redirect('/')
+
+def logout2(request):
+  auth_logout(request)
+  return redirect('accounts/admin')
