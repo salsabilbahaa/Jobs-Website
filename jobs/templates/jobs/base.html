@@ -10,7 +10,7 @@
 <body>
     <div class="topnav">
         <a href="{% url 'home2' %}">Home</a>
-        <a class="{% if active == 'search_job' %}active{% endif %}" href="{% url 'search_job' %}">Search jobs</a>
+        <a class="{% if active == 'search_job' %}active{% endif %}" href="{% url 'search_job' %}">Available jobs</a>
         <a class="{% if active == 'my_applications' %}active{% endif %}" href="{% url 'my_applications' %}">My applications</a>
         {% if user.is_authenticated %}
             <a id="logout-link" href="{% url 'logout' %}">Logout</a>

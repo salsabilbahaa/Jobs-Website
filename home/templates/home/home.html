@@ -9,7 +9,7 @@
 <body>
     <div class="topnav">
         <a id = "ac" class="active" href="{% url 'home' %}">Home</a>
-        <a id = "ac" href="{% url 'search_job' %}">Search jobs</a>
+        <a id = "ac" href="{% url 'search_job' %}">Available jobs</a>
         <a id = "ac" href="{% url 'my_applications' %}">My applications</a>
         {% if user.is_authenticated %}
             <a href="{% url 'logout' %}" class="logout-link">Logout</a>
