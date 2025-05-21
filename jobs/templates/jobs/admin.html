@@ -50,8 +50,9 @@
                         <p><strong>Company:</strong> {{ job.company }}</p>
                     </div>
                     <div class="job-actions">
-                        <a href="{% url 'edit_job' job.id %}" class="bt btn-small edit">Edit</a>
-                        <a href="#" onclick= "deleteJob('{{ job.id }}')" class="bt btn-small delete">Delete</a>
+                        <a href="{% url 'job_details' job.id%}" class="bt btn-small job-details">View details</a>
+                        <a href="{% url 'edit_job' job.id %}" class="bt btn-small edit job-details">Edit</a>
+                        <a href="#" onclick= "deleteJob('{{ job.id }}')" class="bt btn-small delete job-details">Delete</a>
                     </div>
                 </div>
                 {% empty %}

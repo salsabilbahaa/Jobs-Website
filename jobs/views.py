@@ -46,7 +46,8 @@ def update_job(request, job_id):
         job.company = request.POST.get('company')
         job.status = request.POST.get('status')
         job.save()
-
+        return redirect('/jobs/admin-jobs/')
+    
     return render(request, 'jobs/update_job.html', {'job': job})
 def job_list(request):
     search_query = request.GET.get('search', '')
@@ -57,6 +58,10 @@ def job_list(request):
         jobs = Job.objects.all()
     print("JOBS:", jobs)
     return render(request, 'jobs/admin.html', {'jobs': jobs, 'search': search_query})
+
+def job_details(request, job_id):
+    job = get_object_or_404(Job, id=job_id)
+    return render(request, 'jobs/job_details.html', {'job': job})
 
 @csrf_protect
 @require_http_methods(["DELETE"])

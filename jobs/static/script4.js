@@ -58,7 +58,7 @@ function displayJobs(jobs) {
     const jobsContainer = document.querySelector('#jobs-container');
     if (!jobsContainer) return;
 
-    jobsContainer.innerHTML = '';  // نمسح المحتوى القديم
+    jobsContainer.innerHTML = '';  
 
     if (jobs.length === 0) {
         jobsContainer.innerHTML = '<p>No jobs found.</p>';

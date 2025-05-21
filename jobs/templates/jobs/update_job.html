@@ -27,13 +27,13 @@
             <select name="status" required>
                 <option value="" disabled>Select Status</option>
                 <option value="open" {% if job.status == 'open' %}selected{% endif %}>Open</option>
-                <option value="close" {% if job.status == 'close' %}selected{% endif %}>Closed</option>
+                <option value="closed" {% if job.status == 'close' %}selected{% endif %}>Closed</option>
             </select>
         </div>
         <div>
             <button type="submit">Update Job</button>
         </div>
     </form>
-
+    <script src= "{% static 'edit.js' %}"></script>
 </body>
 </html>
