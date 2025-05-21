@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Home - Job Search</title>
+    <title>Admin Home - Job Search</title>
     <link rel="stylesheet" href="{% static 'home/css/home.css' %}">
 </head>
 <body>
@@ -23,6 +23,13 @@
             <p>Connect with top employers and discover opportunities that match your skills</p>
             <div class="search-container">
                 <input type="text" id="search-input" placeholder="Search for jobs..." class="search-input">
+                <select id="experience-select" class="experience-select">
+                    <option value="">Any Experience</option>
+                    <option value="0-1">0-1 years</option>
+                    <option value="1-3">1-3 years</option>
+                    <option value="3-5">3-5 years</option>
+                    <option value="5+">5+ years</option>
+                </select>
                 <button class="search-button" id="search-button">Search</button>
             </div>
         </div>
@@ -31,6 +38,19 @@
     <div class="featured-jobs">
         <h2>Featured Job Opportunities</h2>
         <div class="job-cards" id="job-cards-container">
+            {% if featured_jobs %}
+                {% for job in featured_jobs %}
+                <div class="job-card">
+                    <h3>{{ job.title }}</h3>
+                    <div class="company-name">{{ job.company }}</div>
+                    <div class="job-details">Experience: {{ job.experience|default:"Not specified" }}</div>
+                    <div class="job-details">Salary: {{ job.salary|default:"Not specified" }}</div>
+                    <div class="job-location">Job ID: {{ job.id }}</div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <p class="no-jobs">No open jobs available at the moment.</p>
+            {% endif %}
         </div>
     </div>
 
@@ -69,11 +89,10 @@
             <div class="footer-section">
                 <h3>Quick Links</h3>
                 <ul>
-                    <li><a href="home.html">Home</a></li>
-                    <li><a href="../search/search_job.html">Search Jobs</a></li>
-                    <li><a href="../user/application.html">My Applications</a></li>
-                    <li><a href="../Login.html">Login</a></li>
-                    <li><a href="../Register.html">Register</a></li>
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'add_job' %}">Add Job</a></li>
+                    <li><a href="{% url 'job_list' %}">Company Jobs</a></li>
+                    <li><a href="{% url 'logout2' %}">Logout</a></li>
                 </ul>
             </div>
             <div class="footer-section">
