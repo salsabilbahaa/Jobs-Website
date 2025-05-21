@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 
 class Job(models.Model):
     STATUS_CHOICES = [
@@ -12,12 +13,18 @@ class Job(models.Model):
     status = models.CharField(max_length=10, choices=STATUS_CHOICES)
 
     def __str__(self):
-        return self.title
+        return f"{self.title} at {self.company}"
 
 class Application(models.Model):
-    job = models.ForeignKey(Job, on_delete=models.CASCADE)
-    date_applied = models.DateField(auto_now_add=True)
-
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,  # Changed from User
+        on_delete=models.CASCADE
+    )
+    job = models.ForeignKey('Job', on_delete=models.CASCADE)
+    date = models.DateField(auto_now_add=True)
+    
+    class Meta:
+        unique_together = ('user', 'job')
+    
     def __str__(self):
-        return f"{self.job.title} - {self.date_applied}"
-
+        return f"{self.user.username} applied for {self.job.title}"

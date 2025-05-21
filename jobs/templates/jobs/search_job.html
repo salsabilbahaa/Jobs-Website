@@ -1,27 +1,24 @@
-<html>
-<head>
-    <meta charset="UTF-8">
-    {% load static %}
-    <title>Search jobs</title>
-    <link rel="stylesheet" href="{% static 'search.job.style.css' %}">
-</head>    
-<body>
-    {% block content %}
-    <div class="topnav">
-        <a href="../Home/home.html">Home</a>
-        <a class="active" href="search_job.html">Search jobs</a>
-        <a href="../user/application.html">My applications</a>
-        <a id="login-register-link" href="../Login.html">Login / Register</a>
-        <a id="logout-link" href="#" style="display: none ">Logout</a>
-    </div>
-    <br>
-    <br>
-    <div class="job-listings">
-        <div class="job-titles" id="jobListContainer"></div>
-        <div class="job-details" id="jobDetailContainer">
-            <p>Select a job to view details</p>
+{% extends "jobs/base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="job-listings">
+    <div class="job-titles" id="jobListContainer">
+        {% for job in jobs %}
+        <div class="job-item" data-job-id="{{ job.job_id }}">
+            <div class="job-title">{{ job.title }}</div>
+            <div class="job-company">{{ job.company }}</div>
+            <div class="job-meta">${{ job.salary }}</div>
         </div>
+        {% endfor %}
     </div>
-    {% endblock %}
-</body>   
-</html>
+    <div class="job-details" id="jobDetailContainer">
+        <p>Select a job to view details</p>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'jobs/js/search.job.js' %}"></script>
+{% endblock %}
