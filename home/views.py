@@ -92,4 +92,4 @@ def logout(request):
 
 def logout2(request):
   auth_logout(request)
-  return redirect('accounts/admin')
+  return redirect('/accounts/admin')

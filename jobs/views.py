@@ -1,6 +1,10 @@
+from django.http import HttpResponseNotFound, JsonResponse
 from django.shortcuts import render, redirect
 from .models import Job, Application
 from django.db.models import Q
+from django.views.decorators.csrf import csrf_protect
+from django.views.decorators.http import require_http_methods
+from django.contrib.auth import logout as auth_logout
 
 def search_jobs(request):
     jobs = Job.objects.all()
@@ -54,10 +58,15 @@ def job_list(request):
     print("JOBS:", jobs)
     return render(request, 'jobs/admin.html', {'jobs': jobs, 'search': search_query})
 
+@csrf_protect
+@require_http_methods(["DELETE"])
 def delete_job(request, job_id):
-   if request.method == 'DELETE':
-     job = get_object_or_404(Job, pk=job_id)
-     job.delete()
-     return JsonResponse({'success': True})
-   else:
-     return JsonResponse({'success': False, 'message': 'Invalid request method'})
+    try:
+        job = Job.objects.get(id=job_id)
+        job.delete()
+        return JsonResponse({'message': 'done'})
+    except Job.DoesNotExist:
+        return HttpResponseNotFound('not found')
+def logout(request):
+   auth_logout(request)
+   return redirect('/')
