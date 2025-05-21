@@ -19,8 +19,11 @@ def register(request):
             email = data.get('email')
             username = data.get('username')
             password = data.get('password')
+            confirm_password = data.get('confirmPassword')
             role = data.get('role')
 
+            if password != confirm_password:
+                return JsonResponse({'success': False, 'message': 'Passwords do not match'})
             if CustomUser.objects.filter(email=email).exists():
                 return JsonResponse({'success': False, 'message': 'Email already exists'})
             if CustomUser.objects.filter(username=username).exists():
