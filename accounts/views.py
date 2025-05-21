@@ -35,7 +35,7 @@ def register(request):
             user.save()
 
             login(request, user)
-           return JsonResponse({'success': True, 'role': user.role})
+            return JsonResponse({'success': True, 'role': user.role})
         
         except Exception as e:
             return JsonResponse({'success': False, 'message': str(e)})
