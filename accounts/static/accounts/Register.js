@@ -62,29 +62,27 @@ form.addEventListener('submit', function(event) {
         alert(errors.join('\n'));
         return;
     }
-
-    const newUser = {
-        email: email, 
-        username: username, 
-        password: password,
-        role: role
-    };
-
     fetch('/accounts/register/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(newUser)
+        body: JSON.stringify({
+        username: username,
+        password: password,
+        role: role
+        })
+        
     })
     .then(response => response.json())
     .then(data => {
+
         if (data.success) {
             alert('Registration successful!');
-            if (role === 'admin') {
-                window.location.href = 'admin/Add.html';
+            if (data.role === 'admin') {
+                window.location.href = '/accounts/admin/';
             } else {
-                window.location.href = 'Home/home.html';
+                window.location.href = '/';
             }
         } else {
             alert(data.message);
