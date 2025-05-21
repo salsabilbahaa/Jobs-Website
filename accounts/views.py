@@ -34,6 +34,7 @@ def register(request):
             )
             user.save()
 
+            login(request, user)
             return JsonResponse({'success': True})
         
         except Exception as e:

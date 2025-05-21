@@ -5,19 +5,62 @@ from django.db.models import Q
 from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.http import require_http_methods
 from django.contrib.auth import logout as auth_logout
+from django.contrib.auth.decorators import login_required
 
-def search_jobs(request):
+def search_job(request):
     jobs = Job.objects.all()
     return render(request, 'jobs/search_job.html', {'jobs': jobs})
 
-def apply_to_job(request, job_id):
-    job = Job.objects.get(pk=job_id)
-    Application.objects.create(job=job)
-    return redirect('my_applications')
+@login_required
+def apply_job(request, job_id):
+    if request.method == 'POST':
+        try:
+            job = Job.objects.get(job_id=job_id)
+            
+            # Check if application already exists
+            if Application.objects.filter(user=request.user, job=job).exists():
+                return JsonResponse({
+                    'success': False,
+                    'message': 'You have already applied for this job!'
+                })
+            
+            # Create new application
+            Application.objects.create(user=request.user, job=job)
+            
+            return JsonResponse({
+                'success': True,
+                'message': 'Application submitted successfully!'
+            })
+            
+        except Job.DoesNotExist:
+            return JsonResponse({
+                'success': False,
+                'message': 'Job not found'
+            }, status=404)
+    
+    return JsonResponse({
+        'success': False,
+        'message': 'Invalid request method'
+    }, status=400)
 
+@login_required
 def my_applications(request):
-    applications = Application.objects.all()
-    return render(request, 'jobs/my_applications.html', {'applications': applications})
+    applications = Application.objects.filter(user=request.user).select_related('job')
+    return render(request, 'jobs/application.html', {'applications': applications})
+
+def job_detail_ajax(request, job_id):
+    try:
+        job = Job.objects.get(job_id=job_id)
+        data = {
+            'title': job.title,
+            'job_id': job.job_id,
+            'salary': job.salary,
+            'company': job.company,
+            'status': job.status,
+        }
+        return JsonResponse(data)
+    except Job.DoesNotExist:
+        return JsonResponse({'error': 'Job not found'}, status=404)
 
 def add_job(request):
     

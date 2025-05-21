@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>My Applications</title>
+    <link rel="stylesheet" href="{% static 'jobs/css/application.css' %}">
+    <link rel="stylesheet" href="{% static 'jobs/css/search.job.style.css' %}">
+</head>
+<body>
+    <div class="user">
+        <h2>Application Panel</h2>
+        <a href="{% url 'home2' %}">Home</a>
+        <a href="{% url 'search_job' %}">Available jobs</a>
+        <a class="active" href="{% url 'my_applications' %}">My applications</a>
+        {% if user.is_authenticated %}
+            <a id="logout-link" href="{% url 'logout' %}">Logout</a>
+        {% else %}
+            <a id="login-register-link" href="{% url 'login' %}">Login / Register</a>
+        {% endif %}
+    </div>
+
+    <div class="main-content">
+        <h1>Your Applied Jobs</h1>
+        <div id="applicationsContainer">
+            {% for application in applications %}
+            <div class="application-item">
+                <div class="app-title">{{ application.job.title }}</div>
+                <div class="app-details">{{ application.job.company }} | Applied on: {{ application.date }}</div>
+            </div>
+            {% empty %}
+            <p>No applications submitted yet.</p>
+            {% endfor %}
+        </div>
+    </div>
+
+    <script src="{% static 'jobs/js/logout.js' %}"></script>
+</body>
+</html>
