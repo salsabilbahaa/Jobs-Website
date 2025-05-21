@@ -6,6 +6,7 @@ form.addEventListener('submit', function(event) {
     const email = document.getElementById('email').value;
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
+    const confirmPassword = document.getElementById('confirm-password').value;
     const role = document.getElementById('role').value;
 
     const errors = [];
@@ -58,6 +59,15 @@ form.addEventListener('submit', function(event) {
         }
     }
 
+    if (!confirmPassword) 
+    {
+        errors.push('Please enter your confirm password');
+    }
+    else if (confirmPassword !== password) 
+    {
+        errors.push('Passwords do not match');
+    }
+    
     if (errors.length > 0) {
         alert(errors.join('\n'));
         return;
@@ -70,6 +80,7 @@ form.addEventListener('submit', function(event) {
         body: JSON.stringify({
         username: username,
         password: password,
+        confirmPassword: confirmPassword,
         role: role
         })
         
