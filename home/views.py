@@ -14,6 +14,19 @@ def home(request):
     }
     return render(request, 'home/home.html', context)
 
+def home2(request):
+    # Check if user is authenticated and is an admin/staff
+    if not request.user.is_authenticated or not request.user.is_staff:
+        return redirect('login')  # Redirect non-admins to login page
+    
+    # Get open jobs for the featured section (limit to 3)
+    featured_jobs = Job.objects.filter(status__iexact='open').order_by('-id')[:3]
+    context = {
+        'featured_jobs': featured_jobs
+    }
+    
+    return render(request, 'home/home2.html', context)  
+
 def extract_years_from_experience(experience_str):
     if not experience_str:
         return 0
